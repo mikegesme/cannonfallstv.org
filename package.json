@@ -1,0 +1,17 @@
+{
+    "name": "cannonfallstv",
+    "version": "1.0.0",
+    "dependencies": {
+        "gulp": "^3.9.1",
+        "gulp-autoprefixer": "^4.0.0",
+        "gulp-clean-css": "^3.9.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-sass": "^3.1.0",
+        "http-server": "^0.10.0",
+        "node-sass": "^4.7.1"
+    },
+    "devDependencies": {
+        "gulp-livereload": "^3.8.1",
+        "gulp-watch": "^4.3.11"
+    }
+}
