@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import moment from 'moment'
 import Header from './Header'
 import Player from './Player'
 
@@ -10,11 +11,12 @@ class Home extends Component {
     videos: {}
   }
   componentDidMount() {
-    const channelId = 'UCIi1h9LoV9fefFTucM8bRtw'
+    // const channelId = 'UCIi1h9LoV9fefFTucM8bRtw'
     const apiKey = 'AIzaSyBB9LBxNmwDosU6hf6-AsPJgoGc4TaTpUw'
+    const uploadPlaylistId = 'UUIi1h9LoV9fefFTucM8bRtw'
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&type=video&channelId=${channelId}&maxResults=25&key=${apiKey}`
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=5&playlistId=${uploadPlaylistId}&key=${apiKey}`
       )
       .then(response => {
         this.setState({ videos: response.data.items, videosLoaded: true })
@@ -22,10 +24,29 @@ class Home extends Component {
   }
   render() {
     let PlayerComponent
+    let RecentVideos
     if (this.state.videosLoaded) {
       PlayerComponent = <Player video={this.state.videos[0]} />
+      RecentVideos = (
+        <ul className="recent-videos">
+          {this.state.videos.slice(1, 5).map(video => (
+            <li>
+              <a href="/">
+                <img src={video.snippet.thumbnails.medium.url} alt="School Board" />
+                <div className="video-caption">
+                  <span className="video-title">{video.snippet.title}</span>
+                  <span className="video-date">
+                    Published on {moment(video.snippet.publishedAt).format('MMM D, YYYY')}
+                  </span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
     } else {
       PlayerComponent = ''
+      RecentVideos = ''
     }
     return (
       <div>
@@ -33,44 +54,7 @@ class Home extends Component {
         <main id="content" role="main">
           <div className="home-content">
             {PlayerComponent}
-            <ul className="recent-videos">
-              <li>
-                <a href="/">
-                  <img src="https://i.ytimg.com/vi/6kkmgcauYcw/maxresdefault.jpg" alt="School Board" />
-                  <div className="video-caption">
-                    <span className="video-title">Video 2 Title</span>
-                    <span className="video-date">Nov. 14, 2017</span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="/">
-                  <img src="https://i.ytimg.com/vi/6kkmgcauYcw/maxresdefault.jpg" alt="School Board" />
-                  <div className="video-caption">
-                    <span className="video-title">Video 3 Title</span>
-                    <span className="video-date">Nov. 14, 2017</span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="/">
-                  <img src="https://i.ytimg.com/vi/6kkmgcauYcw/maxresdefault.jpg" alt="School Board" />
-                  <div className="video-caption">
-                    <span className="video-title">Video 4 Title</span>
-                    <span className="video-date">Nov. 14, 2017</span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="/">
-                  <img src="https://i.ytimg.com/vi/6kkmgcauYcw/maxresdefault.jpg" alt="School Board" />
-                  <div className="video-caption">
-                    <span className="video-title">Video 5 Title</span>
-                    <span className="video-date">Nov. 14, 2017</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
+            {RecentVideos}
             <div className="actions">
               <Link href="/watch" to="/watch" className="button">
                 More Videos

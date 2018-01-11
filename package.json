@@ -5,8 +5,7 @@
     "dev": "webpack-dev-server",
     "lint": "eslint build/**/*.{js,jsx} --quiet",
     "build": "webpack",
-    "watch": "webpack --watch",
-    "server": "http-server htdocs"
+    "watch": "webpack --watch"
   },
   "dependencies": {
     "axios": "^0.17.1",

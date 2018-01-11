@@ -14,7 +14,6 @@ class Player extends Component {
 
   onReady = () => {
     this.setState({ loaded: true })
-    console.log(this.props.video)
   }
   render() {
     const opts = {
