@@ -1,33 +1,21 @@
 import React from 'react'
-
 import { render } from 'react-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Home from './Home'
+// import Watch from './Watch'
 
-const Header = () => (
-  <header id="header">
-    <nav id="nav">
-      <a href="/" id="logo">
-        Cannon Falls Community&nbsp;Television
-      </a>
-      <ul className="site-menu">
-        <li>
-          <a href="/">Videos</a>
-        </li>
-        <li>
-          <a href="/">TV Schedule</a>
-        </li>
-        <li>
-          <a id="menu-icon" href="/">
-            <svg version="1.1" viewBox="0 0 32 32" width="32px" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z" />
-            </svg>
-            <span>Menu</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+const NotFound = () => <h1>Sorry, this page was not found.</h1>
+
+const Watch = () => <h1>Watch this!</h1>
+
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/watch" component={Watch} />
+      <Route component={NotFound} />
+    </Switch>
+  </BrowserRouter>
 )
-
-const App = () => <Header />
 
 render(<App />, document.getElementById('app'))
