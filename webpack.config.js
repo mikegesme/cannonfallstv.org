@@ -5,13 +5,13 @@ module.exports = {
   entry: './build/js/ClientApp.jsx',
   devtool: 'cheap-eval-source-map',
   output: {
-    path: path.join(__dirname, 'htdocs/assets/js'),
-    publicPath: '/htdocs/',
+    path: path.join(__dirname, 'docs/assets/js'),
+    publicPath: '/docs/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: path.join(__dirname, '/htdocs'),
-    publicPath: '/htdocs/',
+    contentBase: path.join(__dirname, '/docs'),
+    publicPath: '/docs/',
     historyApiFallback: true
   },
   resolve: {
