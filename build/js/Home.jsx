@@ -1,62 +1,51 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import moment from 'moment'
 import Header from './Header'
 import Player from './Player'
+import RelatedVideos from './RelatedVideos'
+
+// const channelId = 'UCIi1h9LoV9fefFTucM8bRtw'
+const apiKey = 'AIzaSyBB9LBxNmwDosU6hf6-AsPJgoGc4TaTpUw'
+const uploadPlaylistId = 'UUIi1h9LoV9fefFTucM8bRtw'
 
 class Home extends Component {
   state = {
     videosLoaded: false,
+    latestVideo: {},
+    latestVideoId: '',
     videos: {}
   }
   componentDidMount() {
-    // const channelId = 'UCIi1h9LoV9fefFTucM8bRtw'
-    const apiKey = 'AIzaSyBB9LBxNmwDosU6hf6-AsPJgoGc4TaTpUw'
-    const uploadPlaylistId = 'UUIi1h9LoV9fefFTucM8bRtw'
     axios
       .get(
         `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=5&playlistId=${uploadPlaylistId}&key=${apiKey}`
       )
       .then(response => {
-        this.setState({ videos: response.data.items, videosLoaded: true })
+        this.setState({
+          latestVideo: response.data.items[0],
+          latestVideoId: response.data.items[0].snippet.resourceId.videoId,
+          videos: response.data.items.slice(1, 5),
+          videosLoaded: true
+        })
       })
   }
   render() {
-    let PlayerComponent
     let RecentVideos
     if (this.state.videosLoaded) {
-      PlayerComponent = <Player video={this.state.videos[0]} />
-      RecentVideos = (
-        <ul className="recent-videos">
-          {this.state.videos.slice(1, 5).map(video => (
-            <li>
-              <a href="/">
-                <img src={video.snippet.thumbnails.medium.url} alt="School Board" />
-                <div className="video-caption">
-                  <span className="video-title">{video.snippet.title}</span>
-                  <span className="video-date">
-                    Published on {moment(video.snippet.publishedAt).format('MMM D, YYYY')}
-                  </span>
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )
+      RecentVideos = <RelatedVideos recent videos={this.state.videos} />
     } else {
-      PlayerComponent = ''
       RecentVideos = ''
     }
     return (
       <div>
         <Header />
         <main id="content" role="main">
-          <div className="home-content">
-            {PlayerComponent}
+          <div className="main-content">
+            <Player video={this.state.latestVideo} videoId={this.state.latestVideoId} />
             {RecentVideos}
             <div className="actions">
-              <Link href="/watch" to="/watch" className="button">
+              <Link href="/videos" to="/videos" className="button">
                 More Videos
               </Link>
             </div>

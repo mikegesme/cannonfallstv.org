@@ -1,13 +1,10 @@
+/* eslint react/prop-types: 0 */
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import YouTube from 'react-youtube'
 import moment from 'moment'
 
 class Player extends Component {
-  propTypes = {
-    video: PropTypes.element.isRequired
-  }
-
   state = {
     loaded: true
   }
@@ -19,35 +16,40 @@ class Player extends Component {
     const opts = {
       height: '1080',
       width: '1920',
-      // videoId: result.items[0].snippet.resourceId.videoId,
       playerVars: {
         modestbranding: 1,
         rel: 0,
         color: 'white',
-        showinfo: 0
+        showinfo: 0,
+        autoplay: this.props.autoplay
       }
-      //   events: {
-      //     onReady: onPlayerReady,
-      //     onStateChange: onPlayerStateChange
-      //   }
     }
-    // const publishedDate = new Date(this.props.video.snippet.publishedAt)
-    // const displayDate = `${publishedDate.getDay() + 1}`
+
+    let embed
+    let details
+    if (this.props.video.snippet) {
+      embed = <YouTube videoId={this.props.videoId} opts={opts} onReady={this.onReady} />
+      details = (
+        <div>
+          <span className="video-title">{this.props.video.snippet.title}</span>
+          <span className="video-date">
+            Published on {moment(this.props.video.snippet.publishedAt).format('MMM D, YYYY')}
+          </span>
+          <span className="video-description">{this.props.video.snippet.description}</span>
+        </div>
+      )
+    }
 
     return (
       <div className={`video video-hero fullwidth ${this.state.loaded ? 'loaded' : 'notloaded'}`}>
         <div className="player-container">
           <div className="player-wrapper">
             <span>Loading video...</span>
-            <YouTube videoId={this.props.video.id.videoId} opts={opts} onReady={this.onReady} />
+            {embed}
           </div>
         </div>
         <div className="video-caption">
-          <span className="video-title">{this.props.video.snippet.title}</span>
-          <span className="video-date">
-            Published on {moment(this.props.video.snippet.publishedAt).format('MMM D, YYYY')}
-          </span>
-          <span className="video-description">{this.props.video.snippet.description}</span>
+          <div className="video-caption-wrapper">{details}</div>
         </div>
       </div>
     )

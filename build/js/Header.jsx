@@ -8,10 +8,7 @@ const Header = () => (
       </a>
       <ul className="site-menu">
         <li>
-          <a href="/">Videos</a>
-        </li>
-        <li>
-          <a href="/">TV Schedule</a>
+          <a href="/videos">Videos</a>
         </li>
         <li>
           <a id="menu-icon" href="/">

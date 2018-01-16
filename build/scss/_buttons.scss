@@ -1,8 +1,9 @@
 .button {
-    display: inline-block;
-    background-color: white;
-    color: var(--darkblue);
-    padding: 0.75em 1em;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--gutter);
+  display: inline-block;
+  background-color: white;
+  color: var(--darkblue);
+  padding: 0.75em 1em;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--gutter);
+  text-shadow: none;
 }

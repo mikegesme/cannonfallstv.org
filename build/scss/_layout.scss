@@ -1,20 +1,22 @@
 #content {
-    padding-top: calc(2vw + 1rem);
+  padding-top: calc(2vw + 1rem);
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.home-content > *:not(.fullwidth) {
+.main-content > *:not(.fullwidth) {
+  padding: 0 var(--gutter);
+  @media screen and (min-width: $medium) {
+    padding: 0;
+  }
+}
+
+.main-content {
+  @media screen and (min-width: $medium) {
     padding: 0 var(--gutter);
-    @media screen and (min-width: $medium) {
-        padding: 0;
-    }
-}
-
-.home-content {
-    @media screen and (min-width: $medium) {
-        padding: 0 var(--gutter);        
-    }
+  }
 }
 
 .actions {
-    text-align: center;
+  text-align: center;
 }
