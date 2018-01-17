@@ -7,103 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cannon Falls Community Television</title>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="/assets/css/main.css" rel="stylesheet">
-    <!-- TODO - remove this -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    <!-- <script>
-        var channelID = 'UCIi1h9LoV9fefFTucM8bRtw';
-        // var channelID = 'UCHF66aWLOxBW4l6VkSrS3cQ';
-        var apiKey = 'AIzaSyBB9LBxNmwDosU6hf6-AsPJgoGc4TaTpUw';
-        var getLatest = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&type=video&channelId=' + channelID + '&maxResults=25&key=' + apiKey;
-        var getLatest = 'https://www.googleapis.com/youtube/v3/playlistItems?maxResults=25&part=snippet&type=video&playlistId=UUIi1h9LoV9fefFTucM8bRtw&key=' + apiKey;
-        var checkLive = 'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=' + channelID + '&type=video&eventType=live&key=' + apiKey;
-        var getPopular = 'https://www.googleapis.com/youtube/v3/search?order=viewCount&type=video&part=snippet&publishedAfter=2016-07-02T00:00:00Z&maxResults=25&channelId=' + channelID + '&key=' + apiKey;
-        var Latest;
-        $.ajax({
-            url: checkLive,
-            success: function (result) {
-                //console.log(result);
-                if (result.items.length) {
-                    //console.log('live!');
-                }
-                else {
-                    //console.log('not live.');
-                }
-                $("#result").html('<div>' + result + '</div>');
-            }
-        });
-
-
-
-        $(document).ready(function () {
-            $('.hero-video').click(function () {
-                var listID = $(this).attr('data-list');
-                $('.video-list').hide();
-                $('#' + listID).show();
-            });
-        });
-    </script> -->
+    <link href="assets/css/main.css" rel="stylesheet">
 </head>
 
 <body>
-
-
-    <script>
-        // // 2. This code loads the IFrame Player API code asynchronously.
-        // var tag = document.createElement('script');
-
-        // tag.src = "https://www.youtube.com/iframe_api";
-        // var firstScriptTag = document.getElementsByTagName('script')[0];
-        // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        // // 3. This function creates an <iframe> (and YouTube player)
-        // //    after the API code downloads.
-        // var player;
-        // function onYouTubeIframeAPIReady() {
-        //     $.ajax({
-        //         url: getLatest,
-        //         success: function (result) {
-        //             Latest = result.items;
-        //             console.log(Latest);
-        //             player = new YT.Player('player', {
-        //                 height: '1080',
-        //                 width: '1920',
-        //                 videoId: result.items[0].snippet.resourceId.videoId,
-        //                 playerVars: {
-        //                     modestbranding: 1,
-        //                     rel: 0,
-        //                     color: 'white',
-        //                     showinfo: 0
-        //                 },
-        //                 events: {
-        //                     'onReady': onPlayerReady,
-        //                     'onStateChange': onPlayerStateChange
-        //                 }
-        //             });
-        //         }
-        //     });
-        // }
-
-        // 4. The API will call this function when the video player is ready.
-        // function onPlayerReady(event) {
-        //     // event.target.playVideo();
-        //     document.getElementsByClassName('video')[0].classList.add('loaded');
-        // }
-
-        // 5. The API calls this function when the player's state changes.
-        //    The function indicates that when playing a video (state=1),
-        //    the player should play for six seconds and then stop.
-        // var done = false;
-        // function onPlayerStateChange(event) {
-        //     // if (event.data == YT.PlayerState.PLAYING && !done) {
-        //     //     setTimeout(stopVideo, 6000);
-        //     //     done = true;
-        //     // }
-        // }
-        // function stopVideo() {
-        //     player.stopVideo();
-        // }
-    </script>
     <div id="app"></div>
     <script src="/assets/js/bundle.js"></script>
 </body>
