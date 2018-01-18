@@ -5,7 +5,6 @@ import Header from './Header'
 import Player from './Player'
 import RelatedVideos from './RelatedVideos'
 
-// const channelId = 'UCIi1h9LoV9fefFTucM8bRtw'
 const apiKey = 'AIzaSyBB9LBxNmwDosU6hf6-AsPJgoGc4TaTpUw'
 const uploadPlaylistId = 'UUIi1h9LoV9fefFTucM8bRtw'
 

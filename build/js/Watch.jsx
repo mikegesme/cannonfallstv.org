@@ -1,5 +1,5 @@
-/* eslint react/prop-types: 0 */
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 import Header from './Header'
 import Player from './Player'
@@ -31,10 +31,7 @@ class Watch extends Component {
           )
           .then(response1 => {
             response1.data.items.forEach((num, index) => {
-              console.log(index)
-              console.log(response1.data.items[index].id.videoId)
               if (response1.data.items[index].id.videoId === this.state.videoId) {
-                console.log('match!')
                 response1.data.items.splice(index, 1)
               }
             })
@@ -55,6 +52,14 @@ class Watch extends Component {
       </div>
     )
   }
+}
+
+Watch.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired
 }
 
 export default Watch

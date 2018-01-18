@@ -1,6 +1,5 @@
-/* eslint react/prop-types: 0 */
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import YouTube from 'react-youtube'
 import moment from 'moment'
 
@@ -54,6 +53,22 @@ class Player extends Component {
       </div>
     )
   }
+}
+
+Player.propTypes = {
+  autoplay: PropTypes.bool,
+  videoId: PropTypes.string.isRequired,
+  video: PropTypes.shape({
+    snippet: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      publishedAt: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    })
+  }).isRequired
+}
+
+Player.defaultProps = {
+  autoplay: false
 }
 
 export default Player

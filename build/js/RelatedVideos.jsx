@@ -5,7 +5,7 @@ import moment from 'moment'
 const RelatedVideos = props => (
   <ul className="recent-videos">
     {props.videos.slice(0, 4).map(video => (
-      <li>
+      <li key={props.recent ? video.snippet.resourceId.videoId : video.id.videoId}>
         <a href={props.recent ? `/watch/${video.snippet.resourceId.videoId}` : `/watch/${video.id.videoId}`}>
           <img src={video.snippet.thumbnails.medium.url} alt="School Board" />
           <div className="video-caption">

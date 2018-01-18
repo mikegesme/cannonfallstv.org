@@ -24,7 +24,7 @@ class Videos extends Component {
   render() {
     const { videos } = this.state
     const videoList = videos.map(video => (
-      <div className="video-thumbnail">
+      <div className="video-thumbnail" key={video.snippet.resourceId.videoId}>
         <a href={`/watch/${video.snippet.resourceId.videoId}`}>
           <img src={video.snippet.thumbnails.medium.url} alt="School Board" />
           <div className="video-caption">
