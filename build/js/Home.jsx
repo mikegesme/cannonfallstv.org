@@ -18,9 +18,10 @@ class Home extends Component {
   componentDidMount() {
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=5&playlistId=${uploadPlaylistId}&key=${apiKey}`
+        `https://www.googleapis.com/youtube/v3/playlistItems?&order=date&part=snippet&maxResults=5&playlistId=${uploadPlaylistId}&key=${apiKey}`
       )
       .then(response => {
+        console.log(response)
         this.setState({
           latestVideo: response.data.items[0],
           latestVideoId: response.data.items[0].snippet.resourceId.videoId,
